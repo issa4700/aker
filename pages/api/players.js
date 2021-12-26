@@ -3,37 +3,43 @@ import { uuidForName } from "minecraft-api";
 import { getSession } from "next-auth/react";
 import { formatUUID, validateUUID } from "../../lib/uuid";
 
-const key = "whitelist.test"; // Change this when API route is complete
+const key =
+  process.env.NODE_ENV == "development" ? "whitelist.test" : "whitelist.main";
+
 export default async function WhitelistedUsers(req, res) {
   const session = await getSession({ req });
 
-  // Check if user is authenticated
-  if (!session) {
-    return res
-      .status(401)
-      .json({ Error: "You need to be logged in to do that!" });
-  }
+  try {
+    // Check if user is authenticated
+    if (!session) {
+      return res
+        .status(401)
+        .json({ Error: "You need to be logged in to do that!" });
+    }
 
-  switch (req.method) {
-    // Retrieve list of players
-    case "GET":
-      //This endpoint is publically available
-      const players = await bsg.smembers(key);
+    switch (req.method) {
+      // Retrieve list of players
+      case "GET":
+        //This endpoint is publically available
+        const players = await bsg.smembers(key);
 
-      return res.status(200).json(players);
+        return res.status(200).json(players);
 
-    // Add players to whitelist
-    case "POST":
-      await addPlayer(req, res);
-      break;
+      // Add players to whitelist
+      case "POST":
+        await addPlayer(req, res);
+        break;
 
-    // Remove players from whitelist
-    case "DELETE":
-      await delPlayer(req, res);
-      break;
+      // Remove players from whitelist
+      case "DELETE":
+        await delPlayer(req, res);
+        break;
 
-    default:
-      return res.status(400).send();
+      default:
+        return res.status(400).send();
+    }
+  } catch (e) {
+    return res.status(500).send({ Error: "Something went wrong!" });
   }
 }
 
