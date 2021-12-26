@@ -10,8 +10,6 @@ export default function Players({ props }) {
   const { data: players, error } = useSWR("/api/players", fetcher);
   const isLoading = !players && !error;
 
-  console.log(players);
-
   if (isLoading)
     return (
       <tr>
