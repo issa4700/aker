@@ -1,7 +1,7 @@
 import React from "react";
 import Players from "./whitelist/Players";
 
-export default function Whitelist({ props }) {
+export default function Whitelist({ props, onError }) {
   return (
     <table className="w-full divide-y divide-gray-200 shadow rounded outline-1 outline-slate-100">
       <thead className="bg-gray-100">
@@ -23,7 +23,7 @@ export default function Whitelist({ props }) {
       </thead>
 
       <tbody className="bg-white divide-y divide-gray-200">
-        <Players props={props} />
+        <Players onError={onError} props={props} />
       </tbody>
       <tfoot>
         <tr className="h-2">
