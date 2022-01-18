@@ -5,12 +5,10 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import UserName from "./UserName";
 import DeleteUserBtn from "./DeleteUserBtn";
 
-export default function Players({ props }) {
+export default function Players({ props, onError }) {
   // const { players, error, isLoading } = props;
   const { data: players, error } = useSWR("/api/players", fetcher);
   const isLoading = !players && !error;
-
-  console.log(players);
 
   if (isLoading)
     return (
@@ -41,7 +39,7 @@ export default function Players({ props }) {
 
   return (
     <>
-      {players.reverse().map((player) => (
+      {players.map((player) => (
         <tr key={player}>
           <td className="whitespace-nowrap">
             <div className="px-4 py-3 flex items-center">
@@ -67,7 +65,7 @@ export default function Players({ props }) {
           </td>
 
           <td className="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
-            <DeleteUserBtn UUID={player} />
+            <DeleteUserBtn onError={onError} UUID={player} />
           </td>
         </tr>
       ))}
