@@ -28,4 +28,25 @@ export default NextAuth({
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
     }),
   ],
+
+  callbacks: {
+    redirect({ url, baseUrl }) {
+      if (url.startsWith(baseUrl)) return url;
+      // Allows relative callback URLs
+      else if (url.startsWith("/")) return new URL(url, baseUrl).toString();
+      return baseUrl;
+    },
+
+    async session({ session, user }) {
+      // Check if user isAdmin
+      const admins = process.env.ADMINS ? process.env.ADMINS.split(",") : null;
+      const isAdmin = admins.includes(user.email);
+      if (isAdmin) session.isAdmin = true;
+
+      session.userId = user.id;
+      session.mcUUID = user.minecraftUUID;
+
+      return session;
+    },
+  },
 });

@@ -1,14 +1,9 @@
 export const Navigation = {
   player: [
     {
-      label: "Overview",
+      label: "Player Profile",
       icon: "UserIcon",
-      href: "/player",
-    },
-    {
-      label: "My applications",
-      icon: "ClipboardCheckIcon",
-      href: "/application",
+      href: "/",
     },
   ],
   admin: [
@@ -27,10 +22,10 @@ export const Navigation = {
       icon: "ClipboardCheckIcon",
       href: "/whitelist",
     },
-    {
-      label: "Settings",
-      icon: "AdjustmentsIcon",
-      href: "/settings",
-    },
+    // {
+    //   label: "Settings",
+    //   icon: "AdjustmentsIcon",
+    //   href: "/settings",
+    // },
   ],
 };

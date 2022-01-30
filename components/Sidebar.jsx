@@ -17,7 +17,6 @@ export default function Sidebar() {
           {/* Nav Menu */}
           <div className="flex flex-col flex-grow space-y-6">
             <NavMenu>
-              <NavHeading>Player profile</NavHeading>
               {Navigation.player.map((item, i) => (
                 <NavItem
                   key={i}
