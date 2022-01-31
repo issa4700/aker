@@ -38,9 +38,9 @@ export default function WhitelistPage() {
         <title>Server Whitelist</title>
       </Head>
       <Layout>
-        <div className="flex flex-col xl:flex-row space-y-4 xl:space-y-0 xl:space-x-4 justify-between">
+        <div className="flex flex-col xl:flex-row space-y-4 xl:space-y-0 xl:space-x-6 justify-between">
           <div className="w-full xl:w-2/3 flex flex-col md:px-4 space-y-3 p-1 overflow-x-auto">
-            <h1 className="text-2xl font-semibold">Whitelist</h1>
+            <h1 className="text-2xl lg:text-4xl font-bold">Whitelist</h1>
             <div className="xl:hidden">
               <AddPlayer onError={onError} />
             </div>

@@ -26,7 +26,12 @@ function Auth({ children }) {
   const { data: session, status } = useSession();
   const isUser = !!session?.user;
   useEffect(() => {
-    if (status === "loading") return; // Do nothing while loading
+    if (status === "loading")
+      return (
+        <div className="grid place-items-center h-screen">
+          <HashLoader />
+        </div>
+      ); // Do nothing while loading
     if (!isUser) Router.push("/login"); // If not authenticated, force log in
   }, [isUser, status]);
 
