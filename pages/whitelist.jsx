@@ -66,3 +66,4 @@ export default function WhitelistPage() {
 }
 
 WhitelistPage.auth = true;
+WhitelistPage.requireAdmin = true;

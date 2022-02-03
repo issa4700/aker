@@ -2,7 +2,7 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 import { useSession } from "next-auth/react";
 
-export default function Home() {
+export default function Applications() {
   const { data: session } = useSession();
 
   return (
@@ -31,4 +31,5 @@ export default function Home() {
   );
 }
 
-Home.auth = true;
+Applications.auth = true;
+Applications.requireAdmin = true;
