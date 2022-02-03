@@ -12,7 +12,7 @@ export default function App({
   return (
     <SessionProvider session={session}>
       {Component.auth ? (
-        <Auth>
+        <Auth requireAdmin={Component.requireAdmin}>
           <Component {...pageProps} />
         </Auth>
       ) : (
@@ -22,9 +22,11 @@ export default function App({
   );
 }
 
-function Auth({ children }) {
+function Auth({ children, requireAdmin }) {
   const { data: session, status } = useSession();
   const isUser = !!session?.user;
+  const isAdmin = !!session?.isAdmin;
+
   useEffect(() => {
     if (status === "loading")
       return (
@@ -33,6 +35,7 @@ function Auth({ children }) {
         </div>
       ); // Do nothing while loading
     if (!isUser) Router.push("/login"); // If not authenticated, force log in
+    if (requireAdmin && !isAdmin) Router.push("/");
   }, [isUser, status]);
 
   if (isUser) {

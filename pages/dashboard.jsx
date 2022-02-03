@@ -57,3 +57,4 @@ export default function AdminDashboard() {
 }
 
 AdminDashboard.auth = true;
+AdminDashboard.requireAdmin = true;
