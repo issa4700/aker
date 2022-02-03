@@ -1,13 +1,13 @@
 import Head from "next/head";
 import UserLayout from "../components/UserLayout";
 import { useSession } from "next-auth/react";
-import UserName from "../components/whitelist/UserName";
 import { signOut } from "next-auth/react";
 import { LinkBtn } from "../components/LinkBtn";
 import { Pill } from "../components/Pill";
 import useSWR from "swr";
 import { fetcher } from "../lib/fetcher";
 import { ClimbingBoxLoader } from "react-spinners";
+import { LinkedAccount } from "../components/LinkedAccount";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -85,7 +85,7 @@ export default function Home() {
               <LinkedAccount UUID={UUID} />
             ) : (
               <div className="flex flex-col space-y-2 text-gray-700 w-full">
-                <p>You do not have any whitelist applications at the moment.</p>
+                <p>You have not started a whitelist application.</p>
                 {!isWhitelisted && (
                   <LinkBtn href="/apply" label="Start Whitelist Application" />
                 )}
@@ -111,22 +111,6 @@ export default function Home() {
         </div>
       </UserLayout>
     </>
-  );
-}
-
-function LinkedAccount({ UUID }) {
-  return (
-    <div className="w-full border border-indigo-200 p-2 flex flex-row justify-between items-center">
-      <div className="flex flex-col px-1 lg:px-3 ">
-        <div className="font-semibold -mt-1 text-gray-700">
-          <UserName UUID={UUID} />
-        </div>
-        <span className="text-sm text-gray-600">{UUID}</span>
-      </div>
-      <figure className="w-16 h-16 bg-gray-200">
-        <img className="" src={`https://mc-heads.net/avatar/${UUID}`} alt="" />
-      </figure>
-    </div>
   );
 }
 
