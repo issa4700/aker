@@ -7,7 +7,7 @@ const UserLayout = ({ children }) => {
         <div className="sm:w-1/2 xl:w-3/5 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden bg-purple-900 text-white bg-no-repeat bg-cover relative">
           <div className="absolute bg-gradient-to-b from-indigo-600 to-blue-500 opacity-75 inset-0 z-0">
             <img
-              src="https://images.unsplash.com/photo-1621360841013-c7683c659ec6"
+              src={process.env.NEXT_PUBLIC_SPLASH || "/splash.jpg"}
               className="object-cover h-full w-full"
             />
           </div>
