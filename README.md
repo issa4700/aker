@@ -1,27 +1,32 @@
-# Next.js + Tailwind CSS Example
+# Aker
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+## Overview
 
-## Preview
+Aker is a player managment system designed for use in whitelisted Minecraft servers. Aker provides a portal for players to sign up and apply for a server's whitelist, whilst server moderators and administrators get a control panel to automatically add approved players onto the server whitelist without the need of accessing the console or additional software.
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+## Features
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+- Discord based authentication
+- Whitelist application tracking
+- Automatically add approved players to whitelist
+- Admin panel for manually adding and removing players from whitelist
 
-## Deploy your own
+## Deployment
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Aker uses Redis (in conjunction with BungeeSafeGuard/RedisBSG) for interactive with the server whitelist, and MySQL/MariaDB for managing users accounts and whitelist applications. As such, Aker can be deployed using Docker and serverless architectures.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+### Prerequisites
 
-## How to use
+- Minecraft Server:
+  - BungeeSafeGuard/RedisBungee
+- Redis srver
+- MySQL/MariaDB
+- Discord Application (for authenticating players)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+#### Serverless deployment notes
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+If you are deploying Aker on a serverless cloud service, ensure that it allows NextJS API routes. Vercel is known to work really well in this case. For SQL and Redis databases, PlanetScale and RedisLabs has been verified to work well
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Development
+
+To run a local dev build, simply clone this repo and run `yarn` followed by `yarn dev`.
