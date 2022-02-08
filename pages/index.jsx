@@ -56,11 +56,7 @@ export default function Home() {
             <h2 className="font-semibold capitalize text-xl text-gray-800">
               Linked account
             </h2>
-            {isWhitelisted ? (
-              <Pill type="SUCCESS" label="WHITELISTED" />
-            ) : (
-              <Pill type="ERROR" label="NOT WHITELISTED" />
-            )}
+            {isWhitelisted ? <Pill type="SUCCESS" label="WHITELISTED" /> : null}
           </div>
 
           <div className="flex flex-row justify-between items-center">
