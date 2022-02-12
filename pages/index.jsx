@@ -82,8 +82,13 @@ export default function Home() {
             ) : (
               <div className="flex flex-col space-y-2 text-gray-700 w-full">
                 <p>You have not started a whitelist application.</p>
-                {!isWhitelisted && (
+                {!isWhitelisted && UUID ? (
                   <LinkBtn href="/apply" label="Start Whitelist Application" />
+                ) : (
+                  <p>
+                    You'll need to link your Minecraft account before you start
+                    an application!
+                  </p>
                 )}
               </div>
             )}
