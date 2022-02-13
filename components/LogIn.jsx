@@ -24,7 +24,7 @@ export default function LogIn({ error }) {
         </p>
         <button
           className="bg-gray-100 py-3 px-4 w-full hover:bg-gray-200 text-gray-600 text-center"
-          onClick={() => signIn("discord", { callbackUrl: `/register` })}
+          onClick={() => signIn("discord", { callbackUrl: `/link` })}
         >
           Register
         </button>
