@@ -56,11 +56,7 @@ export default function Home() {
             <h2 className="font-semibold capitalize text-xl text-gray-800">
               Linked account
             </h2>
-            {isWhitelisted ? (
-              <Pill type="SUCCESS" label="WHITELISTED" />
-            ) : (
-              <Pill type="ERROR" label="NOT WHITELISTED" />
-            )}
+            {isWhitelisted ? <Pill type="SUCCESS" label="WHITELISTED" /> : null}
           </div>
 
           <div className="flex flex-row justify-between items-center">
@@ -86,8 +82,13 @@ export default function Home() {
             ) : (
               <div className="flex flex-col space-y-2 text-gray-700 w-full">
                 <p>You have not started a whitelist application.</p>
-                {!isWhitelisted && (
+                {!isWhitelisted && UUID ? (
                   <LinkBtn href="/apply" label="Start Whitelist Application" />
+                ) : (
+                  <p>
+                    You'll need to link your Minecraft account before you start
+                    an application!
+                  </p>
                 )}
               </div>
             )}
