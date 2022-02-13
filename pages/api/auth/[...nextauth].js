@@ -3,7 +3,7 @@ import DiscordProvider from "next-auth/providers/discord";
 import SequelizeAdapter, { models } from "@next-auth/sequelize-adapter";
 import sequelize from "../../../lib/sqlize";
 import Application from "../../../lib/models/application";
-import { DataTypes } from "sequelize";
+import User from "../../../lib/models/user";
 
 sequelize.sync();
 
@@ -12,11 +12,7 @@ export default NextAuth({
 
   adapter: SequelizeAdapter(sequelize, {
     models: {
-      User: sequelize.define("user", {
-        ...models.User,
-        minecraftUUID: DataTypes.UUID,
-      }),
-
+      User: User,
       Application: Application,
     },
   }),
