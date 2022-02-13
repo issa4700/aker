@@ -3,7 +3,7 @@ import { LinkedAccount, LinkAccSkeleton } from "../components/LinkedAccount";
 import { useState, useEffect, useCallback, Fragment } from "react";
 import { formatUUID } from "../lib/uuid";
 import { Dialog, Transition } from "@headlessui/react";
-import { signOut } from "next-auth/react";
+import Router from "next/router";
 
 export default function LinkAccForm() {
   const [agreeTOS, setAgreeTOS] = useState(false);
@@ -95,6 +95,7 @@ export default function LinkAccForm() {
       }
 
       // Show modal if successful
+      setSuccess(true);
       setIsOpen(true);
     } catch (error) {
       console.log(error);
@@ -115,15 +116,13 @@ export default function LinkAccForm() {
     return <LinkedAccount UUID="069a79f4-44e9-4726-a5be-fca90e38aaf5" />;
   };
 
-  //   if (!success) return <div></div>;
-
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={() => signOut()}
+          className="fixed inset-0 z-10 overflow-y-auto "
+          onClose={() => Router.reload()}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -135,7 +134,7 @@ export default function LinkAccForm() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <Dialog.Overlay className="fixed inset-0 bg-gray-900 bg-opacity-25" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -163,8 +162,9 @@ export default function LinkAccForm() {
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    You will need to log out and log back in to see changes in
-                    your account.
+                    You Minecraft account has been successfully linked with your
+                    player profile. You may have to refresh the page to see
+                    changes.
                   </p>
                 </div>
 
@@ -172,9 +172,9 @@ export default function LinkAccForm() {
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={() => signOut()}
+                    onClick={() => Router.reload()}
                   >
-                    Got it, log me out!
+                    Got it, thanks!
                   </button>
                 </div>
               </div>
